@@ -151,7 +151,7 @@ const uint16_t PROGMEM rpar[] = {KC_COMM, KC_DOT, COMBO_END};
 const uint16_t PROGMEM lt[] = {KC_M, KC_COMM, COMBO_END};
 const uint16_t PROGMEM ht[] = {KC_COMM, KC_DOT, COMBO_END};
 
-const uint16_t PROGMEM excl[] = {CKC_W, KC_D, COMBO_END};
+const uint16_t PROGMEM excl[] = {KC_W, CKC_D, COMBO_END};
 const uint16_t PROGMEM at[] = {CKC_S, KC_W, COMBO_END};
 const uint16_t PROGMEM hash[] = {CKC_D, KC_E, COMBO_END};
 const uint16_t PROGMEM dollar[] = {CKC_F, KC_R, COMBO_END};
@@ -183,26 +183,6 @@ const uint16_t PROGMEM equal[] = {KC_C, KC_V, COMBO_END};  // You can change the
 
 const uint16_t PROGMEM grave[] = {KC_E, CKC_F, COMBO_END};  // You can change these keys to your preference
 
-bool caps_word_press_user(uint16_t keycode) {
-  switch (keycode) {
-    // Continue Caps Word for alphanumerics + underscore/backspace/delete
-    case KC_A ... KC_Z:
-    case KC_0 ... KC_9:
-    case KC_UNDS:     // _
-    case KC_BSPC:     // Backspace
-    case KC_DEL:      // Delete
-      if (keycode >= KC_A && keycode <= KC_Z) {
-        add_weak_mods(MOD_BIT(KC_LSFT)); // Auto-shift letters
-      }
-      return true;
-
-    // Word-breaking keys (non-alnum except those above)
-    default:
-      return false; // Deactivate Caps Word
-  }
-}
-
-//
 combo_t key_combos[] = {
 
     [SENTER_COMB] = COMBO(senter_combo, S(KC_ENT)), // KC_NO to leave processing for process_combo_event
@@ -272,9 +252,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------+  |--------+--------+--------+--------+--------+--------+--------|
       KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, S(KC_G), KC_VOLD, KC_MPLY, KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, CW_TOGG,
   //|--------+--------+--------+--------+--------+--------+  `--------+--------+--------+--------+--------+--------+--------|
-      XXXXXXX, XXXXXXX, OSM(MOD_LSFT), C(KC_SPC), G(KC_TAB),           KC_HOME, KC_PGDN, KC_PGUP, KC_END, S(KC_G),
+    LCTL(KC_GRV), LALT(KC_GRV), OSM(MOD_LSFT), C(KC_SPC), G(KC_TAB),           KC_HOME, KC_PGDN, KC_PGUP, KC_END, S(KC_G),
   //|--------+--------+--------+--------+--------+--------+  ,--------+--------+--------+--------+--------+--------+--------|
-                                 KC_LGUI, TD(TD_CAPSW),  KC_SPC,     KC_ENT, KC_BSPC, KC_DEL
+                                 KC_COMM, KC_DOT,  KC_SPC,     KC_ENT, KC_BSPC, KC_DEL
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -285,8 +265,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
       KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, KC_GRV,   KC_LALT, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,    KC_F6,
   //|--------+--------+--------+--------+--------+--------+--------'  `--------+--------+--------+--------+--------+--------+--------|
-LCTL(KC_GRV), LALT(KC_GRV), LGUI(KC_GRV), LSFT(KC_GRV),KC_TILD,       KC_UNDS, KC_PLUS,  KC_LPRN, KC_RPRN,  KC_PIPE,
-  //|--------+--------+--------+--------+--------+--------+--------.  ,--------+--------+--------+--------+--------+--------+--------|
+	UG_HUEU, UG_HUED, UG_SATU, UG_SATD, UG_VALU,  UG_VALD, UG_SPDU,  UG_SPDD, UG_NEXT, UG_PREV, 
+  //|--------+--------+--------+--------+-------+--------+--------.  ,--------+--------+--------+--------+--------+--------+--------|
                                 KC_LGUI, KC_SPC,  KC_SPC,   KC_ENT, KC_BSPC, KC_LSFT
                                       //`--------------------------'  `--------------------------'
   ),
