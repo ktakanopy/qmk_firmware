@@ -33,7 +33,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define SMTD_GLOBAL_TAP_TERM 220
 #define SMTD_GLOBAL_FOLLOWING_TAP_TERM 200
 #define SMTD_GLOBAL_SEQUENCE_TERM 100
-#define SMTD_GLOBAL_RELEASE_TERM 50
+#define SMTD_GLOBAL_RELEASE_TERM 20
 // config.h
 // #define CAPS_WORD_IDLgcc E_TIMEOUT 0       // Disable auto-timeout (ZMK default)
 #define DOUBLE_TAP_SHIFT_TURNS_ON_CAPS_WORD
