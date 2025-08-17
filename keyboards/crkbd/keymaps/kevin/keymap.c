@@ -171,7 +171,7 @@ const uint16_t PROGMEM scln[] = {KC_X, KC_C, COMBO_END};
 const uint16_t PROGMEM senter_combo[] = {KC_U, KC_I, COMBO_END};
 
 
-const uint16_t PROGMEM tilde[] = {CKC_L, KC_O, COMBO_END};  // You can change these keys to your preferenc
+const uint16_t PROGMEM tilde[] = {CKC_K, KC_O, COMBO_END};  // You can change these keys to your preferenc
 const uint16_t PROGMEM tilde_spc[] = {KC_I, KC_O, COMBO_END};  // You can change these keys to your preference
 const uint16_t PROGMEM tilde_dot[] = {CKC_L, KC_QUOT, COMBO_END};  // You can change these keys to your preference
 const uint16_t PROGMEM pipe[] = {KC_H, KC_N, COMBO_END};  // You can change these keys to your preference
@@ -236,23 +236,24 @@ combo_t key_combos[] = {
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_BASE] = LAYOUT_split_3x5_3_ex2(
   //,--------------------------------------------------------------.  ,--------------------------------------------------------------.
-      KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,  KC_VOLU,    KC_MUTE,   KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,
+      KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,   XXXXXXX,     XXXXXXX,   KC_Y,    KC_U,    KC_I,    KC_O,   KC_P,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+---:w-----+--------+--------+--------|
-      CKC_A,   CKC_S,   CKC_D,   CKC_F,   KC_G,  KC_VOLD,    KC_MPLY,   KC_H,   CKC_J,   CKC_K,   CKC_L,CKC_QUOT,
+      CKC_A,   CKC_S,   CKC_D,   CKC_F,   KC_G,   XXXXXXX,     XXXXXXX,   KC_H,   CKC_J,   CKC_K,   CKC_L,  CKC_QUOT,
    //|--------+--------+--------+--------+--------+--------+--------'  `--------+--------+--------+--------+--------+--------+--------|
-      KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,
+      KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT,  KC_SLSH,
   //|--------+--------+--------+--------+--------+--------+--------.  ,--------+--------+--------+--------+--------+--------+--------|
                          CKC_GESC, CLT_1SPC, CLT_3TAB,                CLT_2RET, CLT_1BSPC, OSM(MOD_LSFT)
 
   ),
 
   [_NAV] = LAYOUT_split_3x5_3_ex2(
-  //,------------------------------------------------------.  ,--------------------------------------------------------------.
-       KC_1,    KC_2,    KC_3,    KC_4,    KC_5,   S(KC_G),            S(KC_G),    KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
+  //,------------------------------------------------------.  ,----------------
+  //----------------------------------------------.
+       KC_1,    KC_2,    KC_3,    KC_4,    KC_5,     S(KC_G),  S(KC_G),  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
   //|--------+--------+--------+--------+--------+--------+  |--------+--------+--------+--------+--------+--------+--------|
-      KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, S(KC_G), KC_VOLD,            KC_MPLY, KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, CW_TOGG,
+      KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT,   KC_0,    S(KC_G), S(KC_G),  KC_LEFT, KC_DOWN,  KC_UP,  KC_RIGHT, CW_TOGG,
   //|--------+--------+--------+--------+--------+--------+  `--------+--------+--------+--------+--------+--------+--------|
-C(G(KC_LSFT)),A(G(KC_LSFT)),C(A(KC_G)),C(A(KC_LSFT)),C(A(G(KC_LSFT))),            KC_HOME, KC_PGDN, KC_PGUP, KC_END, S(KC_G),
+      C(KC_F), C(KC_D), C(KC_U), C(KC_B),  XXXXXXX,                      XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END,
   //|--------+--------+--------+--------+--------+--------+  ,--------+--------+--------+--------+--------+--------+--------|
                                  KC_COMM, KC_DOT,  KC_SPC,     KC_ENT, KC_BSPC, KC_DEL
                                       //`--------------------------'  `--------------------------'
@@ -265,7 +266,7 @@ C(G(KC_LSFT)),A(G(KC_LSFT)),C(A(KC_G)),C(A(KC_LSFT)),C(A(G(KC_LSFT))),          
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
       KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, KC_GRV,   KC_LALT, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,    KC_F6,
   //|--------+--------+--------+--------+--------+--------+--------'  `--------+--------+--------+--------+--------+--------+--------|
-	UG_HUEU, UG_HUED, UG_SATU, UG_SATD, UG_VALU,  UG_VALD, UG_SPDU,  UG_SPDD, UG_NEXT, UG_PREV, 
+	 UG_HUEU, UG_HUED, UG_SATU, UG_SATD, UG_VALU,  UG_VALD, UG_SPDU,  UG_SPDD, UG_NEXT, UG_PREV, 
   //|--------+--------+--------+--------+-------+--------+--------.  ,--------+--------+--------+--------+--------+--------+--------|
                                 KC_LGUI, KC_SPC,  KC_SPC,   KC_ENT, KC_BSPC, KC_LSFT
                                       //`--------------------------'  `--------------------------'
@@ -273,15 +274,13 @@ C(G(KC_LSFT)),A(G(KC_LSFT)),C(A(KC_G)),C(A(KC_LSFT)),C(A(G(KC_LSFT))),          
 
     [_MOU] = LAYOUT_split_3x5_3_ex2(
   //,- --------------------------------------------------------------------------.  ,--------------------------------------------------------------.
-      G(KC_GRV),   G(KC_LCBR), G(KC_RCBR),   KC_BSPC,      KC_DEL,      G(S(KC_4)),     C(G(S(KC_4))),   G(KC_ENT), S(KC_ENT), MS_UP,   XXXXXXX,  XXXXXXX,
+      G(KC_GRV),    G(KC_LCBR),  G(KC_RCBR),   C(KC_GRV),    KC_DEL,      G(S(KC_4)),     C(G(S(KC_4))),   XXXXXXX,  MS_WHLD,   MS_UP,    MS_WHLU,  XXXXXXX,
   //|--------+-------------+-------------+----------+-----------+--------+-------|  |--------+--------+--------+--------+--------+--------+--------|
-      C(KC_GRV),    A(KC_GRV),   G(KC_GRV),    S(KC_GRV),    C(KC_SPC),  C(G(S(KC_3))),   G(S(KC_5)),     MS_WHLL,   MS_LEFT,   MS_DOWN, MS_RGHT, MS_WHLR,
+      C(KC_ENT),    A(KC_ENT),    G(KC_ENT),    S(KC_ENT),    C(KC_SPC),  C(G(S(KC_3))),   G(S(KC_5)),     MS_WHLL,   MS_LEFT,   MS_DOWN, MS_RGHT, MS_WHLR,
         //|--------+-------------+------------+------------+--------+--------'`--------+--------+--------+--------+--------+--------+--------|
-      G(KC_X),     G(KC_ENT), S(KC_ENT),    KC_ENT,        G(S(KC_V)),                   S(KC_ENT),    MS_WHLD, MS_WHLU, KC_ENT, XXXXXXX,
+       XXXXXXX,     XXXXXXX,      KC_ENT,        KC_BSPC,      KC_DEL,                                     XXXXXXX,   XXXXXXX,   KC_LCBR, KC_RCBR, XXXXXXX,
   //|--------+-------------+--------------+------------+------------+------+--------.  ,--------+--------+--------+------,--+--------+--------+--------|
                                   KC_LGUI, KC_SPC,  KC_SPC,     MS_BTN1, MS_BTN2, MS_BTN3
-
-                                      //`--------------------------'  `--------------------------'
   ),
 
 };
@@ -340,10 +339,10 @@ void on_smtd_action(uint16_t keycode, smtd_action action, uint8_t tap_count) {
 
 
         SMTD_MT(CKC_GESC, KC_ESC, KC_LGUI)
-        SMTD_LT(CLT_1SPC, KC_SPC, 1)
-        SMTD_LT(CLT_1BSPC, KC_BSPC, 1)
-        SMTD_LT(CLT_2RET, KC_ENT, 2)
-        SMTD_LT(CLT_3TAB, KC_TAB, 3)
+        SMTD_LT(CLT_1SPC, KC_SPC, _NAV)
+        SMTD_LT(CLT_1BSPC, KC_BSPC, _NAV)
+        SMTD_LT(CLT_2RET, KC_ENT, _SYM)
+        SMTD_LT(CLT_3TAB, KC_TAB, _MOU)
     }
 }
 
