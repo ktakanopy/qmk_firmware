@@ -253,7 +253,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------+  |--------+--------+--------+--------+--------+--------+--------|
       KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT,   KC_0,    S(KC_G), S(KC_G),  KC_LEFT, KC_DOWN,  KC_UP,  KC_RIGHT, CW_TOGG,
   //|--------+--------+--------+--------+--------+--------+  `--------+--------+--------+--------+--------+--------+--------|
-      C(KC_F), C(KC_D), C(KC_U), C(KC_B),  XXXXXXX,                      XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP, KC_END,
+      C(KC_F), C(KC_D), C(KC_U), C(KC_B),  XXXXXXX,                      KC_HOME, KC_PGDN, KC_PGUP, KC_END, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+  ,--------+--------+--------+--------+--------+--------+--------|
                                  KC_COMM, KC_DOT,  KC_SPC,     KC_ENT, KC_BSPC, KC_DEL
                                       //`--------------------------'  `--------------------------'
@@ -294,6 +294,7 @@ const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
   [3] = { ENCODER_CCW_CW(RGB_MOD, RGB_RMOD), ENCODER_CCW_CW(RGB_HUI, RGB_HUD), ENCODER_CCW_CW(RGB_VAI, RGB_VAD), ENCODER_CCW_CW(RGB_SAI, RGB_SAD), },
 };
 #endif
+
 
 
 bool caps_word_press_user(uint16_t keycode) {
