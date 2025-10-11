@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 #define COMBO_ONLY_FROM_LAYER 0
 #define COMBO_COUNT 30
-#define COMBO_TERM 30 
+#define COMBO_TERM 20 
 #define DOUBLE_TAP_S
 #define DYNAMIC_KEYMAP_LAYER_COUNT 6
 #define COMBO_SHOULD_TRIGGER
@@ -31,7 +31,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ONESHOT_TIMEOUT 800  /* Time (in ms) before the one shot key is released */
 
 #define SMTD_GLOBAL_TAP_TERM 180
-#define SMTD_GLOBAL_FOLLOWING_TAP_TERM 260
+#define SMTD_GLOBAL_FOLLOWING_TAP_TERM 180
 #define SMTD_GLOBAL_SEQUENCE_TERM 100
 #define SMTD_GLOBAL_RELEASE_TERM 10
 // config.h
@@ -42,6 +42,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 //#define QUICK_TAP_TERM
 //#define TAPPING_TERM 100
 #define MAX_DEFERRED_EXECUTORS 10
+
 #ifdef RGBLIGHT_ENABLE
     #define RGBLIGHT_EFFECT_BREATHING
     #define RGBLIGHT_EFFECT_RAINBOW_MOOD
