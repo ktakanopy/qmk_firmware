@@ -38,6 +38,7 @@ enum custom_keycodes {
     TILDE_SPC,
     KC_LGUI_TAB,
     CUSTOM_CAPSWORD,
+    CARET_GRAVE,
     SMTD_KEYCODES_END,
 };
 
@@ -252,7 +253,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
        KC_1,    KC_2,    KC_3,    KC_4,    KC_5,     S(KC_G),  S(KC_G),  KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
   //|--------+--------+--------+--------+--------+--------+  |--------+--------+--------+--------+--------+--------+--------|
       KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT,   KC_0,    S(KC_G), S(KC_G),  KC_LEFT, KC_DOWN,  KC_UP,  KC_RIGHT, CW_TOGG,
-  //|--------+--------+--------+--------+--------+--------+  `--------+--------+--------+--------+--------+--------+--------|
+  //|--------+--------+--------+--------+--------+--------+  :q!`--------+--------+--------+--------+--------+--------+--------|
       C(KC_F), C(KC_D), C(KC_U), C(KC_B),  XXXXXXX,                      KC_HOME, KC_PGDN, KC_PGUP, KC_END, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+  ,--------+--------+--------+--------+--------+--------+--------|
                                  KC_COMM, KC_DOT,  KC_SPC,     KC_ENT, KC_BSPC, KC_DEL
@@ -266,7 +267,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
       KC_LCTL, KC_LALT, KC_LGUI, KC_LSFT, KC_GRV,   KC_LALT, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,    KC_F6,
   //|--------+--------+--------+--------+--------+--------+--------'  `--------+--------+--------+--------+--------+--------+--------|
-	 UG_HUEU, UG_HUED, UG_SATU, UG_SATD, UG_VALU,  UG_VALD, UG_SPDU,  UG_SPDD, UG_NEXT, UG_PREV, 
+	 UG_HUEU, UG_HUED, UG_SATU, UG_SATD, UG_VALU,  UG_VALD, UG_SPDU,  UG_SPDD, UG_NEXT, UG_PREV,
   //|--------+--------+--------+--------+-------+--------+--------.  ,--------+--------+--------+--------+--------+--------+--------|
                                 KC_LGUI, KC_SPC,  KC_SPC,   KC_ENT, KC_BSPC, KC_LSFT
                                       //`--------------------------'  `--------------------------'
@@ -274,9 +275,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_MOU] = LAYOUT_split_3x5_3_ex2(
   //,- --------------------------------------------------------------------------.  ,--------------------------------------------------------------.
-      G(KC_GRV),    G(KC_LCBR),  G(KC_RCBR),   C(KC_GRV),    KC_DEL,      G(S(KC_4)),     C(G(S(KC_4))),   XXXXXXX,  MS_WHLD,   MS_UP,    MS_WHLU,  XXXXXXX,
+      G(KC_GRV),    G(KC_LCBR),  G(KC_RCBR),   C(KC_GRV),    CARET_GRAVE,      G(S(KC_4)),     C(G(S(KC_4))),   XXXXXXX,  MS_WHLD,   MS_UP,    MS_WHLU,  XXXXXXX,
   //|--------+-------------+-------------+----------+-----------+--------+-------|  |--------+--------+--------+--------+--------+--------+--------|
-      C(KC_ENT),    A(KC_ENT),    G(KC_ENT),    S(KC_ENT),    C(KC_SPC),  C(G(S(KC_3))),   G(S(KC_5)),     MS_WHLL,   MS_LEFT,   MS_DOWN, MS_RGHT, MS_WHLR,
+      C(KC_ENT),    A(KC_ENT),    G(KC_ENT),    S(KC_ENT),    KC_ENT,  C(G(S(KC_3))),   G(S(KC_5)),     MS_WHLL,   MS_LEFT,   MS_DOWN, MS_RGHT, MS_WHLR,
         //|--------+-------------+------------+------------+--------+--------'`--------+--------+--------+--------+--------+--------+--------|
        XXXXXXX,     XXXXXXX,      KC_ENT,        KC_BSPC,      KC_DEL,                                     XXXXXXX,   XXXXXXX,   KC_LCBR, KC_RCBR, XXXXXXX,
   //|--------+-------------+--------------+------------+------------+------+--------.  ,--------+--------+--------+------,--+--------+--------+--------|
@@ -361,7 +362,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
         return false;
     }
     switch (keycode){
-        case KC_LGUI_TAB: // super alt tab macro
+        case KC_LGUI_TAB:
             if (record->event.pressed) {
                 if (!is_alt_tab_active) {
                     is_alt_tab_active = true;
@@ -372,6 +373,12 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
                 unregister_code(KC_TAB);
             }
             break;
+            return false;
+        case CARET_GRAVE:
+            if (record->event.pressed) {
+                tap_code16(KC_CIRC);
+                tap_code16(KC_GRV);
+            }
             return false;
     }
     return true;
