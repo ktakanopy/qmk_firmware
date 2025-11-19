@@ -275,7 +275,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_MOU] = LAYOUT_split_3x5_3_ex2(
   //,- --------------------------------------------------------------------------.  ,--------------------------------------------------------------.
-      G(KC_GRV),    G(KC_LCBR),  G(KC_RCBR),   G(KC_1),    G(KC_2),      G(S(KC_4)),     C(G(S(KC_4))),   XXXXXXX,  MS_WHLD,   MS_UP,    MS_WHLU,  XXXXXXX,
+      G(KC_GRV),    G(KC_LCBR),  G(KC_RCBR),   C(KC_GRV),    G(KC_2),      G(S(KC_4)),     C(G(S(KC_4))),   XXXXXXX,  MS_WHLD,   MS_UP,    MS_WHLU,  XXXXXXX,
   //|--------+-------------+-------------+----------+-----------+--------+-------|  |--------+--------+--------+--------+--------+--------+--------|
       C(KC_ENT),    A(KC_ENT),    G(KC_ENT),    S(KC_ENT),    KC_ENT,  C(G(S(KC_3))),   G(S(KC_5)),     MS_WHLL,   MS_LEFT,   MS_DOWN, MS_RGHT, MS_WHLR,
         //|--------+-------------+------------+------------+--------+--------'`--------+--------+--------+--------+--------+--------+--------|
