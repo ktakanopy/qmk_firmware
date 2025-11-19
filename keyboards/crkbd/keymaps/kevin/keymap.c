@@ -256,7 +256,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------+  :q!`--------+--------+--------+--------+--------+--------+--------|
       C(KC_F), C(KC_D), C(KC_U), C(KC_B),  XXXXXXX,                      KC_HOME, KC_PGDN, KC_PGUP, KC_END, XXXXXXX,
   //|--------+--------+--------+--------+--------+--------+  ,--------+--------+--------+--------+--------+--------+--------|
-                                 KC_COMM, KC_DOT,  KC_SPC,     KC_ENT, KC_BSPC, KC_DEL
+                                 L_GUI, KC_DOT,  KC_COMM,     KC_ENT, KC_BSPC, KC_DEL
                                       //`--------------------------'  `--------------------------'
   ),
 
@@ -275,7 +275,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_MOU] = LAYOUT_split_3x5_3_ex2(
   //,- --------------------------------------------------------------------------.  ,--------------------------------------------------------------.
-      G(KC_GRV),    G(KC_LCBR),  G(KC_RCBR),   C(KC_GRV),    CARET_GRAVE,      G(S(KC_4)),     C(G(S(KC_4))),   XXXXXXX,  MS_WHLD,   MS_UP,    MS_WHLU,  XXXXXXX,
+      G(KC_GRV),    G(KC_LCBR),  G(KC_RCBR),   C(KC_GRV),    ,      G(S(KC_4)),     C(G(S(KC_4))),   XXXXXXX,  MS_WHLD,   MS_UP,    MS_WHLU,  XXXXXXX,
   //|--------+-------------+-------------+----------+-----------+--------+-------|  |--------+--------+--------+--------+--------+--------+--------|
       C(KC_ENT),    A(KC_ENT),    G(KC_ENT),    S(KC_ENT),    KC_ENT,  C(G(S(KC_3))),   G(S(KC_5)),     MS_WHLL,   MS_LEFT,   MS_DOWN, MS_RGHT, MS_WHLR,
         //|--------+-------------+------------+------------+--------+--------'`--------+--------+--------+--------+--------+--------+--------|
@@ -376,7 +376,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
             return false;
         case CARET_GRAVE:
             if (record->event.pressed) {
-                tap_code16(KC_CIRC);
+                tap_code16(LSFT(KC_6));
                 tap_code16(KC_GRV);
             }
             return false;
