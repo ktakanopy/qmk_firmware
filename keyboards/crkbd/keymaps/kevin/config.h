@@ -20,7 +20,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #pragma once
 #define COMBO_ONLY_FROM_LAYER 0
 #define COMBO_COUNT 30
-#define COMBO_TERM 20 
+#define COMBO_TERM 20
 #define DOUBLE_TAP_S
 #define DYNAMIC_KEYMAP_LAYER_COUNT 6
 #define COMBO_SHOULD_TRIGGER
@@ -30,8 +30,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ONESHOT_TAP_TOGGLE 5  /* Tapping this number of times holds the key until tapped once again. */
 #define ONESHOT_TIMEOUT 800  /* Time (in ms) before the one shot key is released */
 
-#define SMTD_GLOBAL_TAP_TERM 120
-#define SMTD_GLOBAL_FOLLOWING_TAP_TERM 50
+#define SMTD_GLOBAL_TAP_TERM 135
+#define SMTD_GLOBAL_FOLLOWING_TAP_TERM 135
 #define SMTD_GLOBAL_SEQUENCE_TERM 100
 #define SMTD_GLOBAL_RELEASE_TERM 10
 // config.h

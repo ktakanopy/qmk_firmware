@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 bool is_alt_tab_active = false; // ADD this near the beginning of keymap.c
 
 #include QMK_KEYBOARD_H
+#include "wait.h"
 
 enum custom_keycodes {
     // KC_LGUI_TAB = SAFE_RANGE,
@@ -40,7 +41,8 @@ enum custom_keycodes {
     CUSTOM_CAPSWORD,
     CARET_GRAVE,
     CTRL_SPC_N,
-    CB_X,
+    SMTD_KEYCODES_END,
+    CB_X = SMTD_KEYCODES_END,
     CB_O,
     CB_N,
     CB_P,
@@ -51,7 +53,6 @@ enum custom_keycodes {
     CB_C,
     CB_Z,
     CB_A,
-    SMTD_KEYCODES_END,
 };
 
 
@@ -299,10 +300,10 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 #ifdef ENCODER_MAP_ENABLE
 const uint16_t PROGMEM encoder_map[][NUM_ENCODERS][NUM_DIRECTIONS] = {
-  [0] = { ENCODER_CCW_CW(RGB_MOD, RGB_RMOD), ENCODER_CCW_CW(RGB_HUI, RGB_HUD), ENCODER_CCW_CW(RGB_VAI, RGB_VAD), ENCODER_CCW_CW(RGB_SAI, RGB_SAD), },
-  [1] = { ENCODER_CCW_CW(RGB_MOD, RGB_RMOD), ENCODER_CCW_CW(RGB_HUI, RGB_HUD), ENCODER_CCW_CW(RGB_VAI, RGB_VAD), ENCODER_CCW_CW(RGB_SAI, RGB_SAD), },
-  [2] = { ENCODER_CCW_CW(RGB_MOD, RGB_RMOD), ENCODER_CCW_CW(RGB_HUI, RGB_HUD), ENCODER_CCW_CW(RGB_VAI, RGB_VAD), ENCODER_CCW_CW(RGB_SAI, RGB_SAD), },
-  [3] = { ENCODER_CCW_CW(RGB_MOD, RGB_RMOD), ENCODER_CCW_CW(RGB_HUI, RGB_HUD), ENCODER_CCW_CW(RGB_VAI, RGB_VAD), ENCODER_CCW_CW(RGB_SAI, RGB_SAD), },
+  [0] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(KC_BRID, KC_BRIU), ENCODER_CCW_CW(KC_NO, KC_NO), },
+  [1] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(KC_BRID, KC_BRIU), ENCODER_CCW_CW(KC_NO, KC_NO), },
+  [2] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(KC_BRID, KC_BRIU), ENCODER_CCW_CW(KC_NO, KC_NO), },
+  [3] = { ENCODER_CCW_CW(KC_VOLD, KC_VOLU), ENCODER_CCW_CW(KC_MPRV, KC_MNXT), ENCODER_CCW_CW(KC_BRID, KC_BRIU), ENCODER_CCW_CW(KC_NO, KC_NO), },
 };
 #endif
 
@@ -367,6 +368,20 @@ layer_state_t layer_state_set_user(layer_state_t state) {
 }
 
 
+void keyboard_post_init_user(void) {
+#ifdef RGB_MATRIX_ENABLE
+    rgb_matrix_disable_noeeprom();
+#endif
+}
+
+
+static void send_tmux_sequence(uint16_t keycode) {
+    tap_code16(LCTL(KC_B));
+    wait_ms(10);
+    tap_code16(keycode);
+}
+
+
 bool process_record_user(uint16_t keycode, keyrecord_t* record) {
     if (!process_smtd(keycode, record)) {
         return false;
@@ -400,90 +415,57 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
             return false;
         case CB_X:
             if (record->event.pressed) {
-                register_code(KC_LCTL);
-                tap_code(KC_B);
-                tap_code(KC_X);
-                unregister_code(KC_LCTL);
+                send_tmux_sequence(KC_X);
             }
             return false;
         case CB_O:
             if (record->event.pressed) {
-                register_code(KC_LCTL);
-                tap_code(KC_B);
-                tap_code(KC_O);
-                unregister_code(KC_LCTL);
+                send_tmux_sequence(KC_O);
             }
             return false;
         case CB_N:
             if (record->event.pressed) {
-                register_code(KC_LCTL);
-                tap_code(KC_B);
-                tap_code(KC_N);
-                unregister_code(KC_LCTL);
+                send_tmux_sequence(KC_N);
             }
             return false;
         case CB_P:
             if (record->event.pressed) {
-                register_code(KC_LCTL);
-                tap_code(KC_B);
-                tap_code(KC_P);
-                unregister_code(KC_LCTL);
+                send_tmux_sequence(KC_P);
             }
             return false;
         case CB_L:
             if (record->event.pressed) {
-                register_code(KC_LCTL);
-                tap_code(KC_B);
-                tap_code(KC_L);
-                unregister_code(KC_LCTL);
+                send_tmux_sequence(KC_L);
             }
             return false;
         case CB_LBRC:
             if (record->event.pressed) {
-                register_code(KC_LCTL);
-                tap_code(KC_B);
-                tap_code16(KC_LBRC);
-                unregister_code(KC_LCTL);
+                send_tmux_sequence(KC_LBRC);
             }
             return false;
         case CB_DQT:
             if (record->event.pressed) {
-                register_code(KC_LCTL);
-                tap_code(KC_B);
-                tap_code16(KC_DQT);
-                unregister_code(KC_LCTL);
+                send_tmux_sequence(KC_DQT);
             }
             return false;
         case CB_PERC:
             if (record->event.pressed) {
-                register_code(KC_LCTL);
-                tap_code(KC_B);
-                tap_code16(LSFT(KC_5));
-                unregister_code(KC_LCTL);
+                send_tmux_sequence(KC_PERC);
             }
             return false;
         case CB_C:
             if (record->event.pressed) {
-                register_code(KC_LCTL);
-                tap_code(KC_B);
-                tap_code(KC_C);
-                unregister_code(KC_LCTL);
+                send_tmux_sequence(KC_C);
             }
             return false;
         case CB_Z:
             if (record->event.pressed) {
-                register_code(KC_LCTL);
-                tap_code(KC_B);
-                tap_code(KC_Z);
-                unregister_code(KC_LCTL);
+                send_tmux_sequence(KC_Z);
             }
             return false;
         case CB_A:
             if (record->event.pressed) {
-                register_code(KC_LCTL);
-                tap_code(KC_B);
-                tap_code(KC_A);
-                unregister_code(KC_LCTL);
+                send_tmux_sequence(KC_A);
             }
             return false;
     }
