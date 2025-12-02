@@ -39,6 +39,18 @@ enum custom_keycodes {
     KC_LGUI_TAB,
     CUSTOM_CAPSWORD,
     CARET_GRAVE,
+    CTRL_SPC_N,
+    CB_X,
+    CB_O,
+    CB_N,
+    CB_P,
+    CB_L,
+    CB_LBRC,
+    CB_DQT,
+    CB_PERC,
+    CB_C,
+    CB_Z,
+    CB_A,
     SMTD_KEYCODES_END,
 };
 
@@ -209,8 +221,6 @@ combo_t key_combos[] = {
     [PERC_COMB] = COMBO(percent, KC_PERC),
     [CARET_COMB] = COMBO(caret, KC_CIRC),
     [AMPER_COMB] = COMBO(amper, KC_AMPR),
-    [ASTER_COMB] = COMBO(aster, KC_ASTR),
-
 
     [OSM_L1_COMB] = COMBO(osml1, OSL(1)),
     [CSPC_COMB] = COMBO(cspc, LCTL(KC_SPC)),
@@ -275,11 +285,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_MOU] = LAYOUT_split_3x5_3_ex2(
   //,- --------------------------------------------------------------------------.  ,--------------------------------------------------------------.
-      G(KC_GRV),    G(KC_LCBR),  G(KC_RCBR),   C(KC_GRV),    G(KC_2),      G(S(KC_3)),     C(G(S(KC_4))),   XXXXXXX,  MS_WHLD,   MS_UP,    MS_WHLU,  XXXXXXX,
+      G(KC_GRV),    G(KC_LCBR),  G(KC_RCBR),   C(KC_GRV),    G(KC_2),      G(S(KC_3)),     C(G(S(KC_4))),   CB_N,  CB_P,   CB_O, CB_A,    CB_Z,
   //|--------+-------------+-------------+----------+-----------+--------+-------|  |--------+--------+--------+--------+--------+--------+--------|
-      C(KC_ENT),    A(KC_ENT),    G(KC_ENT),    S(KC_ENT),    KC_ENT,  C(G(S(KC_3))),   G(S(KC_5)),     MS_WHLL,   MS_LEFT,   MS_DOWN, MS_RGHT, MS_WHLR,
+      C(KC_ENT),    A(KC_ENT),    G(KC_ENT),    S(KC_ENT),    KC_ENT,  C(G(S(KC_3))),   G(S(KC_5)),    CB_X,   KC_LT,   KC_LCBR, KC_RCBR, KC_GT,
         //|--------+-------------+------------+------------+--------+--------'`--------+--------+--------+--------+--------+--------+--------|
-       XXXXXXX,     XXXXXXX,      KC_ENT,        KC_BSPC,      KC_DEL,                                     XXXXXXX,   XXXXXXX,   KC_LCBR, KC_RCBR, XXXXXXX,
+       XXXXXXX,     XXXXXXX,      KC_ENT,        KC_BSPC,      KC_DEL,                                     CB_DQT,  CB_PERC,   CB_C, CB_Z, CB_X,
   //|--------+-------------+--------------+------------+------------+------+--------.  ,--------+--------+--------+------,--+--------+--------+--------|
                                   KC_LGUI, KC_SPC,  KC_SPC,     MS_BTN1, MS_BTN2, MS_BTN3
   ),
@@ -378,6 +388,102 @@ bool process_record_user(uint16_t keycode, keyrecord_t* record) {
             if (record->event.pressed) {
                 tap_code16(LSFT(KC_6));
                 tap_code16(KC_GRV);
+            }
+            return false;
+        case CTRL_SPC_N:
+            if (record->event.pressed) {
+                register_code(KC_LCTL);
+                tap_code(KC_SPC);
+                tap_code(KC_N);
+                unregister_code(KC_LCTL);
+            }
+            return false;
+        case CB_X:
+            if (record->event.pressed) {
+                register_code(KC_LCTL);
+                tap_code(KC_B);
+                tap_code(KC_X);
+                unregister_code(KC_LCTL);
+            }
+            return false;
+        case CB_O:
+            if (record->event.pressed) {
+                register_code(KC_LCTL);
+                tap_code(KC_B);
+                tap_code(KC_O);
+                unregister_code(KC_LCTL);
+            }
+            return false;
+        case CB_N:
+            if (record->event.pressed) {
+                register_code(KC_LCTL);
+                tap_code(KC_B);
+                tap_code(KC_N);
+                unregister_code(KC_LCTL);
+            }
+            return false;
+        case CB_P:
+            if (record->event.pressed) {
+                register_code(KC_LCTL);
+                tap_code(KC_B);
+                tap_code(KC_P);
+                unregister_code(KC_LCTL);
+            }
+            return false;
+        case CB_L:
+            if (record->event.pressed) {
+                register_code(KC_LCTL);
+                tap_code(KC_B);
+                tap_code(KC_L);
+                unregister_code(KC_LCTL);
+            }
+            return false;
+        case CB_LBRC:
+            if (record->event.pressed) {
+                register_code(KC_LCTL);
+                tap_code(KC_B);
+                tap_code16(KC_LBRC);
+                unregister_code(KC_LCTL);
+            }
+            return false;
+        case CB_DQT:
+            if (record->event.pressed) {
+                register_code(KC_LCTL);
+                tap_code(KC_B);
+                tap_code16(KC_DQT);
+                unregister_code(KC_LCTL);
+            }
+            return false;
+        case CB_PERC:
+            if (record->event.pressed) {
+                register_code(KC_LCTL);
+                tap_code(KC_B);
+                tap_code16(LSFT(KC_5));
+                unregister_code(KC_LCTL);
+            }
+            return false;
+        case CB_C:
+            if (record->event.pressed) {
+                register_code(KC_LCTL);
+                tap_code(KC_B);
+                tap_code(KC_C);
+                unregister_code(KC_LCTL);
+            }
+            return false;
+        case CB_Z:
+            if (record->event.pressed) {
+                register_code(KC_LCTL);
+                tap_code(KC_B);
+                tap_code(KC_Z);
+                unregister_code(KC_LCTL);
+            }
+            return false;
+        case CB_A:
+            if (record->event.pressed) {
+                register_code(KC_LCTL);
+                tap_code(KC_B);
+                tap_code(KC_A);
+                unregister_code(KC_LCTL);
             }
             return false;
     }
